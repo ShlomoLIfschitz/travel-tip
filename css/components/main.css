@@ -1,4 +1,15 @@
+.main-body{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+
+
+
 .main-container{
+    flex-grow: 1;
     display: grid;
     grid-template: 2fr 1fr/1fr 1fr;
 }
+
