@@ -31,7 +31,7 @@
             </section>
             <section class="btn-sec grid align-between">
                 <div class="location-serch">
-                    <input type="search" placeholder="Enter your location">
+                    <input type="search" onchange="onGetAdd(value)" placeholder="Enter your location">
                 </div>
                 <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
                 <button onclick="onGetUserPos()" class="btn-user-pos">Get User Position</button>

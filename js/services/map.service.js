@@ -5,10 +5,12 @@ export const mapService = {
     addMarker,
     panTo,
     getMap,
+    getAdd,
    
 }
 
 var gMap;
+const API_KEY = 'AIzaSyA960Rf__1afSPnt2sTC20YQFZGgF_pfpE'
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
     console.log('InitMap');
@@ -52,9 +54,10 @@ function panTo(lat, lng) {
     gMap.panTo(laLatLng);
 }
 
+
+
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = 'AIzaSyA960Rf__1afSPnt2sTC20YQFZGgF_pfpE'
     var elGoogleApi = document.createElement('script');
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
     elGoogleApi.async = true;
@@ -65,3 +68,13 @@ function _connectGoogleApi() {
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
 }
+
+
+function getAdd(val){
+    return fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${val}&key=${API_KEY}`)
+    .then(res => res.json())
+    .then(location => location.results[0].geometry.location)
+    .then(location=> panTo(location.lat, location.lng))
+}
+
+

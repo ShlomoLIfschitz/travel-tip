@@ -8,6 +8,7 @@ window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 window.onDeleteLoc = onDeleteLoc;
+window.onGetAdd = onGetAdd
 
 function onInit() {
     mapService.initMap()
@@ -47,8 +48,8 @@ function onGetUserPos() {
     getPosition()
         .then(pos => {
             console.log('User position is:', pos.coords);
-            document.querySelector('.user-pos').innerText =`Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
-                onPanTo(pos.coords.latitude, pos.coords.longitude )
+            document.querySelector('.user-pos').innerText = `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
+            onPanTo(pos.coords.latitude, pos.coords.longitude)
         })
         .catch(err => {
             console.log('err!!!', err);
@@ -70,14 +71,14 @@ function renderlocs() {
     let strHtml = `
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Lat</th>
-        <th>Lng</th>
-        <th>Created At</th>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Lat</th>
+    <th>Lng</th>
+    <th>Created At</th>
         <th>Updated At</th>
         <th>Actions</th>
-    </tr>
+        </tr>
 </thead>
 <tbody>`
     let locs = storage.load('locDB')
@@ -85,8 +86,8 @@ function renderlocs() {
     locs.forEach((loc, idx) => {
         console.log(loc);
         strHtml += `<tr>
-        <td>${loc.id}</td>
-        <td>${loc.name}</td>
+    <td>${loc.id}</td>
+    <td>${loc.name}</td>
         <td>${loc.locPos.lat}</td>
         <td>${loc.locPos.lng}</td>
         <td>${loc.createdAt}</td>
@@ -104,4 +105,8 @@ function renderMarkers() {
     locs.forEach(loc => {
         mapService.addMarker(loc.locPos)
     })
+}
+
+function onGetAdd(val) {
+    let prmsLoc = mapService.getAdd(val)
 }
