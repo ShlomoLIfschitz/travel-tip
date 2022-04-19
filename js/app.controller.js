@@ -10,6 +10,7 @@ window.onGetUserPos = onGetUserPos;
 window.onDeleteLoc = onDeleteLoc;
 window.onMyLocation = onMyLocation;
 window.onCopyLink = onCopyLink;
+window.onGetAdd = onGetAdd;
 
 function onInit() {
     mapService.initMap()
@@ -131,4 +132,11 @@ function renderMarkers() {
     locs.forEach(loc => {
         mapService.addMarker(loc.locPos)
     })
+}
+
+function onGetAdd(val) {
+    mapService.getAdd(val)
+        .then(locService.createLoc)
+        .then(renderlocs)
+        .then(renderMarkers)
 }

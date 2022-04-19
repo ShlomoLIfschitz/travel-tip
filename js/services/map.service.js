@@ -6,7 +6,7 @@ export const mapService = {
     panTo,
     getMap,
     getAdd
-   
+
 }
 
 var gMap;
@@ -86,11 +86,17 @@ function _connectGoogleApi() {
 }
 
 
-function getAdd(val){
+function getAdd(val) {
     return fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${val}&key=${API_KEY}`)
-    .then(res => res.json())
-    .then(location => location.results[0].geometry.location)
-    .then(location=> panTo(location.lat, location.lng))
+        .then(res => res.json())
+        .then(location => location.results[0].geometry.location)
+        .then(location => {
+            panTo(location.lat, location.lng)
+            return {
+                lat: location.lat,
+                lng: location.lng
+            }
+        })
 }
 
 
