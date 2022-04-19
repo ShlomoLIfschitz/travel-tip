@@ -2,7 +2,8 @@ import { utils } from '../utils.js'
 import { storage } from './storage.js';
 export const locService = {
     getLocs,
-    createLoc
+    createLoc,
+    deleteLoc
 }
 
 
@@ -12,7 +13,7 @@ const locs = [
 ]
 
 function getLocs() {
-    let locs = storage.load('locsDB')
+    let locs = storage.load('locDB')
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(locs);
@@ -36,5 +37,11 @@ function createLoc(locPos) {
     console.log('location', locs);
     storage.save('locsDB', locs)
     return loc
+}
+
+function deleteLoc(idx) {
+    let locs = storage.load('locDB')
+    locs.splice(idx, 1)
+    storage.save('locDB', locs)
 }
 
