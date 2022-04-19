@@ -1,3 +1,5 @@
+import { storage } from './storage';
+import { makeId } from '../utils';
 export const locService = {
     getLocs
 }
@@ -16,4 +18,14 @@ function getLocs() {
     });
 }
 
+
+
+function createLoc(name,loc,){
+    return{
+        id: makeId(),
+        name,
+        loc,
+        createdAt: new Date
+    }
+}
 
