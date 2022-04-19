@@ -2,7 +2,8 @@ import { utils } from '../utils.js'
 import { storage } from './storage.js';
 export const locService = {
     getLocs,
-    createLoc
+    createLoc,
+    deleteLoc
 }
 
 
@@ -28,5 +29,11 @@ function createLoc(loc) {
         createdAt: new Date,
         updatedAt: new Date
     }
+}
+
+function deleteLoc(idx) {
+    let locs = storage.load('locDB')
+    locs.splice(idx, 1)
+    storage.save('locDB', locs)
 }
 
