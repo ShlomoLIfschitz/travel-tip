@@ -12,7 +12,12 @@ var gMap;
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
     console.log('InitMap');
-
+    debugger
+    let loc = getFromURL()
+    if (loc.lat && loc.lng) {
+        lat = loc.lat
+        lng = loc.lng
+    }
     return _connectGoogleApi()
         .then(() => {
             console.log('google available');
@@ -32,6 +37,18 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
 
             })
         })
+}
+
+function getFromURL() {
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+    });
+    if (!params) return
+    let loc = {
+        lat: params.let,
+        lng: params.lng
+    }
+    return loc
 }
 
 function getMap() {

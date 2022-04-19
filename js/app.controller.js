@@ -12,13 +12,7 @@ window.onMyLocation = onMyLocation;
 window.onCopyLink = onCopyLink;
 
 function onInit() {
-    const params = new Proxy(new URLSearchParams(window.location.search), {
-        get: (searchParams, prop) => searchParams.get(prop),
-    });
-    // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
-    let lat = params.let; // "some_value"
-    let lng = params.lng;
-    mapService.initMap(+lat, +lng)
+    mapService.initMap()
         .then(() => {
             console.log('Map is ready');
             renderMarkers()
