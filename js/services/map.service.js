@@ -4,14 +4,9 @@ export const mapService = {
     initMap,
     addMarker,
     panTo,
-<<<<<<< HEAD
     getMap,
     getAdd,
    
-=======
-    getMap
-
->>>>>>> 2f9c595e6114921bd97bb3daecadc3724c0ab705
 }
 
 var gMap;
