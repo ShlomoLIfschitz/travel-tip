@@ -13,8 +13,6 @@ function onInit() {
             console.log('Map is ready');
         })
         .catch(() => console.log('Error: cannot init map'));
-
-    google.maps.event.addListener(mapService.gMap, 'click', mapService.mapClick(event));
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
