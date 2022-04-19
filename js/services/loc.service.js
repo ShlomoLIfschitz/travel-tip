@@ -30,12 +30,12 @@ function createLoc(locPos) {
         locPos,
         createdAt: new Date
     }
-    let locs = storage.load('locsDB')
+    let locs = storage.load('locDB')
     console.log('location', loc);
     if (!locs) locs = []
     locs.push(loc)
     console.log('location', locs);
-    storage.save('locsDB', locs)
+    storage.save('locDB', locs)
     return loc
 }
 

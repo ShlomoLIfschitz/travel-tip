@@ -62,16 +62,19 @@ function renderlocs() {
     let locs = storage.load('locDB')
     if (!locs) return
     let strHtml = locs.map((loc, idx) => {
+        console.log(loc);
         return `
         <tr>
-        <th>${loc.id}</th>
-        <th>${loc.name}</th>
-        <th>${loc.loc.lat}</th>
-        <th>${loc.loc.lng}</th>
-        <th>${loc.createdAt}</th>
-        <th>${loc.updatedAt}</th>
-        <th> <button onclick="onPanTo(${loc.loc.lat},${loc.loc.lng})">Go</button> <button onclick="onDeleteLoc(${idx})">Delete</button></th>
+        <td>${loc.id}</td>
+        <td>${loc.name}</td>
+        <td>${loc.locPos.lat}</td>
+        <td>${loc.locPos.lng}</td>
+        <td>${loc.createdAt}</td>
+        <td>${loc.updatedAt}</td>
+        <td> <button onclick="onPanTo(${loc.locPos.lat},${loc.locPos.lng})">Go</button> <button onclick="onDeleteLoc(${idx})">Delete</button></td>
+        </tr>
         `
     })
+    console.log(strHtml.join(''));
     document.querySelector('.locs-table') = strHtml.join('')
 }
