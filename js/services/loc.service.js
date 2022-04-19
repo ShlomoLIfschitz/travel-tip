@@ -7,12 +7,12 @@ export const locService = {
 
 
 const locs = [
-    { name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
+    { name: 'Greatplace', lat: 32.047104, lng: 34.832384 },
     { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
 ]
 
 function getLocs() {
-    let locs = storage.load('locsDB')
+    let locs = storage.load('locDB')
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(locs);
@@ -20,14 +20,13 @@ function getLocs() {
     });
 }
 
-
-
-function createLoc(loc){
-    return{
+function createLoc(loc) {
+    return {
         id: utils.makeId(),
         name: prompt('Name please?'),
         loc,
-        createdAt: new Date
+        createdAt: new Date,
+        updatedAt: new Date
     }
 }
 

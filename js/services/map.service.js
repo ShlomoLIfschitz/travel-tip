@@ -25,6 +25,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
         .then(() => {
             gMap.addListener('click', (mapsMouseEvent) => {
                 let loc = mapsMouseEvent.latLng.toJSON()
+                console.log(loc);
                 addMarker(loc)
                 locService.createLoc(loc)
             })
@@ -48,8 +49,6 @@ function panTo(lat, lng) {
     var laLatLng = new google.maps.LatLng(lat, lng);
     gMap.panTo(laLatLng);
 }
-
-
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()

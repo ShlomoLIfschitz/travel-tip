@@ -1,5 +1,6 @@
 import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
+import { storage } from './services/storage.js';
 
 window.onload = onInit;
 window.onAddMarker = onAddMarker;
@@ -34,6 +35,7 @@ function onGetLocs() {
             console.log('Locations:', locs)
             document.querySelector('.locs').innerText = JSON.stringify(locs)
         })
+    renderlocs()
 }
 
 function onGetUserPos() {
@@ -50,4 +52,21 @@ function onGetUserPos() {
 function onPanTo() {
     console.log('Panning the Map');
     mapService.panTo(35.6895, 139.6917);
+}
+
+function renderlocs() {
+    let locs = storage.load('locDB')
+    if (!locs) return
+    let strHtml = locs.map(loc => {
+        return `
+        <tr>
+        <th>${loc.id}</th>
+        <th>${loc.name}</th>
+        <th>${loc.loc.lat}</th>
+        <th>${loc.loc.lng}</th>
+        <th>${loc.createdAt}</th>
+        <th>${loc.updatedAt}</th>
+        `
+    })
+    document.querySelector('.locs-table') = strHtml.join('')
 }
