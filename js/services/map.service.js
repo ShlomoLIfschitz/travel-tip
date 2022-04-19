@@ -4,8 +4,8 @@ export const mapService = {
     initMap,
     addMarker,
     panTo,
-    getMap,
-   
+    getMap
+
 }
 
 var gMap;
@@ -29,7 +29,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 console.log(loc);
                 addMarker(loc)
                 locService.createLoc(loc)
-                
+
             })
         })
 }
