@@ -3,7 +3,7 @@
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
 }
 
 var gMap;
@@ -21,6 +21,14 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             console.log('Map!', gMap);
         })
 }
+
+// function mapClick() {
+//     const name = prompt('Name of location?')
+//     const locationData = { name: name, location: event.latLng, id: _makeId() }
+//     _saveLocationToStorage(locationData)
+//     placeMarker(locationData);
+//     renderLocations();
+// }
 
 function addMarker(loc) {
     var marker = new google.maps.Marker({
