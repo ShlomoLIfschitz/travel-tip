@@ -19,7 +19,6 @@ const API_KEY = 'AIzaSyA960Rf__1afSPnt2sTC20YQFZGgF_pfpE'
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
     console.log('InitMap');
-    debugger
     let loc = getFromURL()
     if (loc.lat && loc.lng) {
         lat = loc.lat
