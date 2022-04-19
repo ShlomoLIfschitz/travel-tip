@@ -45,7 +45,7 @@ function getFromURL() {
     });
     if (!params) return
     let loc = {
-        lat: params.let,
+        lat: params.lat,
         lng: params.lng
     }
     return loc
