@@ -7,7 +7,7 @@ export const locService = {
 
 
 const locs = [
-    { name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
+    { name: 'Greatplace', lat: 32.047104, lng: 34.832384 },
     { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
 ]
 
@@ -22,12 +22,19 @@ function getLocs() {
 
 
 
-function createLoc(loc){
-    return{
+function createLoc(locPos) {
+    let loc = {
         id: utils.makeId(),
         name: prompt('Name please?'),
-        loc,
+        locPos,
         createdAt: new Date
     }
+    let locs = storage.load('locsDB')
+    console.log('location', loc);
+    if (!locs) locs = []
+    locs.push(loc)
+    console.log('location', locs);
+    storage.save('locsDB', locs)
+    return loc
 }
 
