@@ -1,0 +1,7 @@
+.grid {
+    display: grid;
+}
+
+.align-between {
+    align-content: space-between;
+}
