@@ -21,3 +21,7 @@ td {
 th {
     background-color: lightblue
 }
+
+button {
+    border-radius: 5px;
+}

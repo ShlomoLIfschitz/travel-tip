@@ -9,14 +9,30 @@ window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 window.onDeleteLoc = onDeleteLoc;
 window.onMyLocation = onMyLocation;
+window.onCopyLink = onCopyLink;
 
 function onInit() {
-    mapService.initMap()
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+    });
+    // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
+    let lat = params.let; // "some_value"
+    let lng = params.lng;
+    mapService.initMap(+lat, +lng)
         .then(() => {
             console.log('Map is ready');
             renderMarkers()
         })
         .catch(() => console.log('Error: cannot init map'));
+}
+
+function onCopyLink() {
+    let map = mapService.getMap()
+    const params = new URLSearchParams({
+        lat: map.getCenter().lat(),
+        lng: map.getCenter().lng()
+    })
+    document.querySelector('.copy-link').innerText = `https://shlomolifschitz.github.io/travel-tip/${params.toString()}`
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
