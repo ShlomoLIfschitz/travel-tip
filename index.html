@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>TravelTip TravelTip</title>
+</head>
+<body>
+    <header>
+        <div class="main-header main-layout">
+            <div class="logo">
+                <h1>🌐TravelTip</h1>
+            </div>
+            <div class="nav-bar">
+                <ul>
+                    <li>Map</li>
+                    <li>My favorits</li>
+                    <li>Help</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="main-container main-layout">
+         <section class="map">
+             <div class="location-serch">
+                 <input type="text" placeholder="Enter your location">
+             </div>
+             <div id="map" style="width: 100%; height: 400px;"></div>
+            </section>
+        <section class="btn-sec">
+            <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
+            <button onclick="onGetUserPos()" class="btn-user-pos">Get User Position</button>
+            <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
+            <button onclick="onPanTo()"class="btn-pan">Pan Map to Tokyo</button>
+        </section>
+        <section class="locations">
+            <p>You are at: <span class="user-pos"></span></p>
+            <p>Locations: <span class="locs"></span></p>
+        </section>
+    </div>
+    <footer>
+        <div class="main-footer">
+            <div class="logo">🌐TravelTip</div>
+        </div>
+    </footer>
+        
+
+    <script type="module" src="js/app.controller.js"></script>
+</body>
+</html>
