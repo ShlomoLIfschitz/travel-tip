@@ -7,11 +7,13 @@ window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
+window.onDeleteLoc = onDeleteLoc;
 
 function onInit() {
     mapService.initMap()
         .then(() => {
             console.log('Map is ready');
+            renderMarkers()
         })
         .catch(() => console.log('Error: cannot init map'));
 }
@@ -59,6 +61,7 @@ function onPanTo(lat = 35.6895, lng = 139.6917) {
 
 function onDeleteLoc(idx) {
     locService.deleteLoc(idx)
+    renderlocs()
 }
 
 function renderlocs() {
@@ -93,3 +96,10 @@ function renderlocs() {
     document.querySelector('.locs').innerHTML = strHtml
 }
 
+function renderMarkers() {
+    let locs = storage.load('locDB')
+    if (!locs) return
+    locs.forEach(loc => {
+        mapService.addMarker(loc.locPos)
+    })
+}
