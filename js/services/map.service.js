@@ -5,7 +5,7 @@ export const mapService = {
     addMarker,
     panTo,
     getMap,
-    getAdd,
+    getAdd
    
 }
 
