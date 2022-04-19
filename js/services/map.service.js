@@ -4,9 +4,14 @@ export const mapService = {
     initMap,
     addMarker,
     panTo,
+<<<<<<< HEAD
     getMap,
     getAdd,
    
+=======
+    getMap
+
+>>>>>>> 2f9c595e6114921bd97bb3daecadc3724c0ab705
 }
 
 var gMap;
@@ -14,7 +19,12 @@ const API_KEY = 'AIzaSyA960Rf__1afSPnt2sTC20YQFZGgF_pfpE'
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
     console.log('InitMap');
-
+    debugger
+    let loc = getFromURL()
+    if (loc.lat && loc.lng) {
+        lat = loc.lat
+        lng = loc.lng
+    }
     return _connectGoogleApi()
         .then(() => {
             console.log('google available');
@@ -31,9 +41,21 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 console.log(loc);
                 addMarker(loc)
                 locService.createLoc(loc)
-                
+
             })
         })
+}
+
+function getFromURL() {
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+    });
+    if (!params) return
+    let loc = {
+        lat: params.lat,
+        lng: params.lng
+    }
+    return loc
 }
 
 function getMap() {
