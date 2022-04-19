@@ -28,7 +28,8 @@ function createLoc(locPos) {
         id: utils.makeId(),
         name: prompt('Name please?'),
         locPos,
-        createdAt: new Date
+        createdAt: new Date,
+        updatedAt: new Date
     }
     let locs = storage.load('locDB')
     console.log('location', loc);

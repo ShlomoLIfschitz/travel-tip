@@ -32,10 +32,13 @@ function onAddMarker() {
 function onGetLocs() {
     locService.getLocs()
         .then(locs => {
-            console.log('Locations:', locs)
             document.querySelector('.locs').innerText = JSON.stringify(locs)
+            return locs
         })
-    renderlocs()
+        .then(locs => {
+            renderlocs()
+            console.log('Locations:', locs)
+        })
 }
 
 function onGetUserPos() {
@@ -61,12 +64,24 @@ function onDeleteLoc(idx) {
 }
 
 function renderlocs() {
+    let strHtml = `
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Lat</th>
+        <th>Lng</th>
+        <th>Created At</th>
+        <th>Updated At</th>
+        <th>Actions</th>
+    </tr>
+</thead>
+<tbody>`
     let locs = storage.load('locDB')
     if (!locs) return
-    let strHtml = locs.map((loc, idx) => {
+    locs.forEach((loc, idx) => {
         console.log(loc);
-        return `
-        <tr>
+        strHtml += `<tr>
         <td>${loc.id}</td>
         <td>${loc.name}</td>
         <td>${loc.locPos.lat}</td>
@@ -74,9 +89,9 @@ function renderlocs() {
         <td>${loc.createdAt}</td>
         <td>${loc.updatedAt}</td>
         <td> <button onclick="onPanTo(${loc.locPos.lat},${loc.locPos.lng})">Go</button> <button onclick="onDeleteLoc(${idx})">Delete</button></td>
-        </tr>
-        `
+        </tr>`
     })
-    console.log(strHtml.join(''));
-    document.querySelector('.locs-table') = strHtml.join('')
+    strHtml += `</tbody>`
+    document.querySelector('.locs').innerHTML = strHtml
 }
+
