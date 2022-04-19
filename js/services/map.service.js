@@ -5,6 +5,7 @@ export const mapService = {
     addMarker,
     panTo,
     getMap,
+   
 }
 
 var gMap;
