@@ -1,7 +1,8 @@
-import { storage } from './storage';
-import { makeId } from '../utils';
+import { utils } from '../utils.js'
+import { storage } from './storage.js';
 export const locService = {
-    getLocs
+    getLocs,
+    createLoc
 }
 
 
@@ -11,6 +12,7 @@ const locs = [
 ]
 
 function getLocs() {
+    let locs = storage.load('locsDB')
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(locs);
@@ -20,10 +22,10 @@ function getLocs() {
 
 
 
-function createLoc(name,loc,){
+function createLoc(loc){
     return{
-        id: makeId(),
-        name,
+        id: utils.makeId(),
+        name: prompt('Name please?'),
         loc,
         createdAt: new Date
     }

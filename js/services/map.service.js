@@ -1,5 +1,5 @@
 
-
+import { locService } from "./loc.service.js";
 export const mapService = {
     initMap,
     addMarker,
@@ -26,6 +26,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             gMap.addListener('click', (mapsMouseEvent) => {
                 let loc = mapsMouseEvent.latLng.toJSON()
                 addMarker(loc)
+                locService.createLoc(loc)
             })
         })
 }

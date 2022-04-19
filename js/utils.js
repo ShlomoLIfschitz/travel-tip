@@ -1,5 +1,5 @@
 'use strict'
-export const utils{
+export const utils={
     makeId
 }
 
